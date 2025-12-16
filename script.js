@@ -77,10 +77,10 @@ btnHold.addEventListener('click', function() {
      //Finish the game
      playing = false;
      document
-     .querySelector(`.player--${activePlayer}`)
+     .querySelector(`.player--${activePlayer}`)it
      .classList.add('player--winner');
      document
-     .querySelector(`.player--${sctivePlayer}`
+     .querySelector(`.player--${activePlayer}`
     .clasList.remove('player--active'));
      diceEl.classList.add('hidden');
 
