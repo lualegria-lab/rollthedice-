@@ -77,7 +77,7 @@ btnHold.addEventListener('click', function() {
      //Finish the game
      playing = false;
      document
-     .querySelector(`.player--${activePlayer}`)it
+     .querySelector(`.player--${activePlayer}`)
      .classList.add('player--winner');
      document
      .querySelector(`.player--${activePlayer}`
