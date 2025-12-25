@@ -8,6 +8,19 @@
     <title>Roll the dice!</title>
   </head>
   <body>
+   
+<div class="overlay" id="overlay"></div>
+
+<div class="modal" id="modal">
+    <h2 class="modal-header">Game Rules</h2>
+    <p class="modal-text">
+        The game is played between two players, playing in rounds. In each turn, a player rolls a dice as many times as he wishes. Each result gets added to his ROUND score. BUT, if the player rolls a 1, all his ROUND score gets lost. After that, it's the next player's turn. The player can choose to 'Hold', which means that his ROUND score gets added to his GLOBAL score. After that, it's the next player's turn. The first player to reach 100 points on GLOBAL score wins the game.
+    </p>
+    <button class="close-modal" id="closeModal">Let's play!</button>
+</div>
+
+       
+      </header>
     <main>
       <section class="player player--0 player--active">
         <h2 class="name" id="name--0">Player 1</h2>

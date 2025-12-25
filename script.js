@@ -1,6 +1,10 @@
 'use strict';
 
+
 // Selecting elements from the DOM
+const modal = document.getElementById('modal');
+const overlay = document.getElementById('overlay');
+const btnCloseModal = document.getElementById('closeModal');
 const player0El = document.querySelector('.player--0');
 const player1El = document.querySelector('.player--1');
 const score0El = document.getElementById('score--0');
@@ -11,6 +15,32 @@ const diceEl = document.querySelector('.dice');
 const btnNew = document.querySelector('.btn--new');
 const btnRoll = document.querySelector('.btn--roll');
 const btnHold = document.querySelector('.btn--hold');
+
+
+// Función para cerrar el modal
+const closeModal = function () {
+    modal.classList.add('hidden');
+    overlay.classList.add('hidden');
+};
+
+// Función para abrir el modal (por si la necesitas después)
+const openModal = function () {
+    modal.classList.remove('hidden');
+    overlay.classList.remove('hidden');
+};
+
+// Cerrar modal con el botón
+btnCloseModal.addEventListener('click', closeModal);
+
+// Cerrar modal clickeando el overlay
+overlay.addEventListener('click', closeModal);
+
+// Cerrar modal con la tecla ESC
+document.addEventListener('keydown', function (e) {
+    if (e.key === 'Escape' && !modal.classList.contains('hidden')) {
+        closeModal();
+    }
+});
 //Starting conditions
 
 let scores, currentScore, activePlayer, playing;

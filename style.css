@@ -22,6 +22,82 @@ body {
   justify-content: center;
 }
 
+/* Overlay con blur */
+.overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.5);
+    backdrop-filter: blur(8px);
+    z-index: 9;
+    transition: opacity 0.3s ease;
+}
+
+.overlay.hidden {
+    opacity: 0;
+    pointer-events: none;
+}
+
+/* Modal mejorado */
+.modal {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    z-index: 10;
+    background: white;
+    border-radius: 12px;
+    padding: 3rem;
+    max-width: 600px;
+    width: 90%;
+    box-shadow: 0 4rem 6rem rgba(0, 0, 0, 0.3);
+    transition: opacity 0.3s ease, transform 0.3s ease;
+    text-align: center;
+}
+
+.modal.hidden {
+    opacity: 0;
+    transform: translate(-50%, -50%) scale(0.9);
+    pointer-events: none;
+}
+
+.modal-header {
+    font-size: 2.5rem;
+    margin-bottom: 1.5rem;
+    color: #753682;
+}
+
+.modal-text {
+    font-size: 1.8rem;
+    line-height: 1.8;
+    margin-bottom: 2rem;
+    color: #555;
+    text-align: left;
+}
+
+.close-modal {
+    background: linear-gradient(to top left, #753682 0%, #bf2e34 100%); 
+    color: white;
+    border: none;
+    padding: 1.2rem 3rem;
+    font-size: 1.6rem;
+    font-weight: 400;
+    border-radius: 50px;
+    cursor: pointer;
+    transition: all 0.2s;
+}
+
+.close-modal:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 1rem 2rem rgba(0, 0, 0, 0.2);
+}
+
+.close-modal:active {
+    transform: translateY(0);
+}
+
 /* LAYOUT */
 main {
   position: relative;
