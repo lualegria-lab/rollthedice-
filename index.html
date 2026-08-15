@@ -4,46 +4,133 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <meta name="theme-color" content="#753682" />
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-title" content="Pig Game" />
+    <link rel="manifest" href="manifest.webmanifest" />
+    <link rel="icon" type="image/png" href="dice-6.png" />
     <link rel="stylesheet" href="style.css" />
     <title>Roll the dice!</title>
   </head>
   <body>
-   
-<div class="overlay" id="overlay"></div>
+    <div class="overlay" id="overlay"></div>
 
-<div class="modal" id="modal">
-    <h2 class="modal-header">Game Rules</h2>
-    <p class="modal-text">
-        The game is played between two players, playing in rounds. In each turn, a player rolls a dice as many times as he wishes. Each result gets added to his ROUND score. BUT, if the player rolls a 1, all his ROUND score gets lost. After that, it's the next player's turn. The player can choose to 'Hold', which means that his ROUND score gets added to his GLOBAL score. After that, it's the next player's turn. The first player to reach 100 points on GLOBAL score wins the game.
-    </p>
-    <button class="close-modal" id="closeModal">Let's play!</button>
-</div>
+    <div
+      class="modal"
+      id="modal"
+      role="dialog"
+      aria-modal="true"
+      aria-labelledby="rulesTitle"
+      aria-describedby="rulesDescription"
+      tabindex="-1"
+    >
+      <h2 class="modal-header" id="rulesTitle">Game Rules</h2>
+      <ol class="modal-rules" id="rulesDescription">
+        <li>Players take turns rolling one die.</li>
+        <li>Every roll adds to the active player's current score.</li>
+        <li>Rolling a 1 loses the current score and ends the turn.</li>
+        <li>Holding banks the current score and passes the turn.</li>
+        <li>The first player to reach the target score wins.</li>
+      </ol>
+      <button class="close-modal" id="closeModal" type="button">Let's play!</button>
+    </div>
 
-       
+    <div class="app-shell">
+      <header class="game-header">
+        <div class="target-settings" aria-label="Winning score">
+          <span class="settings-label">Target</span>
+          <div class="target-options">
+            <label class="target-option">
+              <input type="radio" name="target" value="50" />
+              <span>50</span>
+            </label>
+            <label class="target-option">
+              <input type="radio" name="target" value="100" checked />
+              <span>100</span>
+            </label>
+            <label class="target-option">
+              <input type="radio" name="target" value="custom" />
+              <span>Custom</span>
+            </label>
+          </div>
+          <label class="custom-target hidden" for="targetCustom">
+            <span class="visually-hidden">Custom target score</span>
+            <input
+              id="targetCustom"
+              type="number"
+              inputmode="numeric"
+              min="20"
+              max="999"
+              step="5"
+              value="100"
+              disabled
+            />
+          </label>
+        </div>
+
+        <div class="header-actions">
+          <button class="icon-btn btn--sound" type="button" aria-pressed="false">
+            <span class="sound-icon" aria-hidden="true">🔇</span>
+            <span class="visually-hidden">Sound</span>
+          </button>
+          <button class="icon-btn btn--rules" type="button" aria-label="Game rules">
+            ?
+          </button>
+        </div>
       </header>
-    <main>
-      <section class="player player--0 player--active">
-        <h2 class="name" id="name--0">Player 1</h2>
-        <p class="score" id="score--0">43</p>
-        <div class="current">
-          <p class="current-label">Current</p>
-          <p class="current-score" id="current--0">0</p>
-        </div>
-      </section>
-      <section class="player player--1">
-        <h2 class="name" id="name--1">Player 2</h2>
-        <p class="score" id="score--1">24</p>
-        <div class="current">
-          <p class="current-label">Current</p>
-          <p class="current-score" id="current--1">0</p>
-        </div>
-      </section>
 
-      <img src="dice-5.png" alt="Playing dice" class="dice" />
-      <button class="btn btn--new">🔄 New game</button>
-      <button class="btn btn--roll">🎲 Roll dice</button>
-      <button class="btn btn--hold">📥 Hold</button>
-    </main>
+      <main>
+        <section class="player player--0 player--active">
+          <label class="visually-hidden" for="name--0">Player 1 name</label>
+          <input
+            class="name"
+            id="name--0"
+            maxlength="18"
+            value="Player 1"
+            autocomplete="off"
+            spellcheck="false"
+          />
+          <p class="score" id="score--0" aria-live="polite">0</p>
+          <div class="current">
+            <p class="current-label">Current</p>
+            <p class="current-score" id="current--0" aria-live="polite">0</p>
+          </div>
+        </section>
+
+        <div class="game-controls" aria-label="Game controls">
+          <button class="btn btn--new" type="button">🔄 New game</button>
+          <img src="dice-5.png" alt="Playing dice" class="dice hidden" />
+          <button class="btn btn--roll" type="button">🎲 Roll dice</button>
+          <button class="btn btn--hold" type="button">📥 Hold</button>
+        </div>
+
+        <section class="player player--1">
+          <label class="visually-hidden" for="name--1">Player 2 name</label>
+          <input
+            class="name"
+            id="name--1"
+            maxlength="18"
+            value="Player 2"
+            autocomplete="off"
+            spellcheck="false"
+          />
+          <p class="score" id="score--1" aria-live="polite">0</p>
+          <div class="current">
+            <p class="current-label">Current</p>
+            <p class="current-score" id="current--1" aria-live="polite">0</p>
+          </div>
+        </section>
+      </main>
+
+      <section class="history-panel" aria-labelledby="historyTitle">
+        <div class="history-header">
+          <h2 id="historyTitle">Turn log</h2>
+          <button class="btn-clear-log" type="button">Clear</button>
+        </div>
+        <ol class="history-list" id="historyList" aria-live="polite"></ol>
+      </section>
+    </div>
+
     <script src="script.js"></script>
   </body>
 </html>

@@ -1,0 +1,19 @@
+{
+  "name": "Pig Dice Game",
+  "short_name": "Pig Game",
+  "description": "A two-player dice game for quick local matches.",
+  "start_url": "./",
+  "scope": "./",
+  "display": "standalone",
+  "orientation": "portrait",
+  "background_color": "#753682",
+  "theme_color": "#753682",
+  "icons": [
+    {
+      "src": "dice-6.png",
+      "sizes": "300x300",
+      "type": "image/png",
+      "purpose": "any"
+    }
+  ]
+}
